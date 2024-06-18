@@ -2,4 +2,4 @@
 
 Streamline communication, increase employee engagement, and improve productivity with Yoom
 
-![home page screenshot](https://ibb.co.com/JzvnXBq "Yoom App")
+![screenshot](https://i.ibb.co.com/ZhBdyLS/Fire-Shot-Capture-009-Zoom-Clone-localhost.png "Yoom App")
