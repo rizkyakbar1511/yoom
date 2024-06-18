@@ -65,7 +65,7 @@ export default function MeetingRoom() {
               <LayoutList className="text-white" size={20} />
             </DropdownMenuTrigger>
           </div>
-          <DropdownMenuContent className="border-dark-1 bg-dark-1 text-white">
+          <DropdownMenuContent className="border-dark-1 bg-slate-800 text-white">
             {["Grid", "Speaker-Left", "Speaker-Right"].map((item, index) => (
               <div key={index}>
                 <DropdownMenuItem

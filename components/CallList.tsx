@@ -70,9 +70,9 @@ export default function CallList({ type }: { type: "ended" | "upcoming" | "recor
   return (
     <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
       {calls && calls.length > 0 ? (
-        calls.map((meeting: Call | CallRecording) => (
+        calls.map((meeting: Call | CallRecording, idx) => (
           <MeetingCard
-            key={(meeting as Call).id}
+            key={idx}
             icon={
               type === "ended"
                 ? "/icons/previous.svg"
@@ -91,10 +91,12 @@ export default function CallList({ type }: { type: "ended" | "upcoming" | "recor
             }
             isPreviousMeeting={type === "ended"}
             buttonIcon1={type === "recordings" ? "/icons/play.svg" : undefined}
-            handleClick={
-              type === "recordings"
-                ? () => router.push((meeting as CallRecording).url)
-                : () => router.push(`/meeting/${(meeting as Call).id}`)
+            handleClick={() =>
+              router.push(
+                type === "recordings"
+                  ? (meeting as CallRecording).url
+                  : `/meeting/${(meeting as Call).id}`
+              )
             }
             link={
               type === "recordings"
@@ -105,7 +107,7 @@ export default function CallList({ type }: { type: "ended" | "upcoming" | "recor
           />
         ))
       ) : (
-        <h1>{noCallsMessage}</h1>
+        <h1 className="dark:text-white text-gray-600">{noCallsMessage}</h1>
       )}
     </div>
   );

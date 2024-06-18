@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
+
+import ThemeProvider from "@/components/ThemeProvider";
+import ClerkProvider from "@/components/ClerkProvider";
 
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "./globals.css";
@@ -14,7 +15,7 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "Zoom Clone",
+  title: "YOOM",
   description: "Meeting App",
   icons: {
     icon: "/icons/logo.svg",
@@ -27,26 +28,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider
-      appearance={{
-        baseTheme: dark,
-        layout: {
-          logoImageUrl: "/icons/yoom-logo.svg",
-          socialButtonsVariant: "iconButton",
-        },
-      }}
-    >
-      <html lang="en">
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased bg-dark-2",
-            fontSans.variable
-          )}
+    <html lang="en">
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased dark:bg-slate-900 bg-gray-200",
+          fontSans.variable
+        )}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-          {children}
-          <Toaster />
-        </body>
-      </html>
-    </ClerkProvider>
+          <ClerkProvider>{children}</ClerkProvider>
+        </ThemeProvider>
+        <Toaster />
+      </body>
+    </html>
   );
 }

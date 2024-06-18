@@ -22,7 +22,7 @@ export default function MobileNav() {
             alt="Hamburger Icon"
           />
         </SheetTrigger>
-        <SheetContent className="border-none bg-dark-1" side="left">
+        <SheetContent className="border-none bg-slate-800" side="left">
           <Link className="flex items-center gap-1" href="/">
             <Image
               className="max-sm:size-10"
@@ -43,7 +43,7 @@ export default function MobileNav() {
                     <SheetClose asChild key={link.route}>
                       <Link
                         className={cn("flex gap-4 items-center p-4 rounded-lg w-full max-w-60", {
-                          "bg-blue-1": isActive,
+                          "bg-blue-500": isActive,
                         })}
                         key={link.label}
                         href={link.route}

@@ -80,7 +80,7 @@ export default function MeetingTypeList() {
         handleClick={() => setMeetingState("isInstantMeeting")}
       />
       <HomeCard
-        className="bg-blue-1"
+        className="bg-blue-500"
         img="/icons/schedule.svg"
         title="Schedule Meeting"
         description="Plan your meeting"
@@ -100,6 +100,14 @@ export default function MeetingTypeList() {
         description="via invitation link"
         handleClick={() => setMeetingState("isJoiningMeeting")}
       />
+      <MeetingModal
+        isOpen={meetingState === "isInstantMeeting"}
+        onClose={() => setMeetingState(undefined)}
+        title="Instant Meeting"
+        className="text-center"
+        buttonText="Start Meeting"
+        handleClick={createMeeting}
+      />
       {!callDetails ? (
         <MeetingModal
           isOpen={meetingState === "isScheduleMeeting"}
@@ -109,25 +117,30 @@ export default function MeetingTypeList() {
         >
           <div className="flex flex-col gap-2.5">
             <Label
-              className="text-base font-normal leading-[22px] text-sky-2"
+              className="text-base font-normal leading-[22px] dark:text-sky-2"
               htmlFor="description"
             >
               Add a description
             </Label>
             <Textarea
               id="description"
-              className="border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"
+              className="darl:border-none dark:bg-slate-700 dark:focus-visible:ring-0 dark:focus-visible:ring-offset-0"
               onChange={(e) => setValues((prev) => ({ ...prev, description: e.target.value }))}
             />
-            <Label className="text-base font-normal leading-[22px] text-sky-2" htmlFor="datetime">
+            <Label
+              className="text-base font-normal leading-[22px] dark:text-sky-2"
+              htmlFor="datetime"
+            >
               Add a description
             </Label>
             <DatePicker
               id="datetime"
-              className="w-full rounded bg-dark-3 p-2 focus:outline-none"
               selected={values.dateTime}
               onChange={(date) => setValues((prev) => ({ ...prev, dateTime: date! }))}
               showTimeSelect
+              customInput={
+                <Input className="w-full rounded dark:bg-slate-700 dark:focus-visible:ring-0 dark:focus-visible:ring-offset-0" />
+              }
               timeFormat="HH:mm"
               timeIntervals={15}
               timeCaption="time"
@@ -159,7 +172,7 @@ export default function MeetingTypeList() {
         handleClick={() => router.push(values.link)}
       >
         <Input
-          className="border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"
+          className="dark:border-none dark:bg-slate-700 dark:focus-visible:ring-0 dark:focus-visible:ring-offset-0"
           placeholder="Meeting Link"
           onChange={(e) => setValues((prev) => ({ ...prev, link: e.target.value }))}
         />
