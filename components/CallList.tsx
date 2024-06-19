@@ -5,8 +5,8 @@ import { Call, CallRecording } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import MeetingCard from "./MeetingCard";
-import Loader from "./Loader";
 import { useToast } from "./ui/use-toast";
+import MeetingCardSkeleton from "./MeetingCardSkeleton";
 
 export default function CallList({ type }: { type: "ended" | "upcoming" | "recordings" }) {
   const { endedCalls, upcomingCalls, callRecordings, isLoading } = useGetCalls();
@@ -65,11 +65,11 @@ export default function CallList({ type }: { type: "ended" | "upcoming" | "recor
   const calls = getCalls();
   const noCallsMessage = getNoCallsMessage();
 
-  if (isLoading) return <Loader />;
-
   return (
     <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
-      {calls && calls.length > 0 ? (
+      {isLoading ? (
+        Array.from({ length: 4 }, (_, idx) => <MeetingCardSkeleton key={idx} />)
+      ) : calls && calls.length > 0 ? (
         calls.map((meeting: Call | CallRecording, idx) => (
           <MeetingCard
             key={idx}

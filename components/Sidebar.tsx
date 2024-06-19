@@ -22,7 +22,7 @@ export default function Sidebar() {
                 <TooltipTrigger asChild>
                   <Link
                     className={cn("flex gap-4 items-center p-4 rounded-lg justify-start", {
-                      "dark:bg-blue-500 bg-gray-800 text-white": isActive,
+                      "dark:bg-blue-500 bg-slate-700 text-white": isActive,
                     })}
                     href={link.route}
                   >
